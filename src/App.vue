@@ -26,4 +26,3 @@ export default {
   margin-top: 60px;
 }
 </style>
-출처: https://juntcom.tistory.com/316 [쏘니의 개발블로그:티스토리]
