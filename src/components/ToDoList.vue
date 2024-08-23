@@ -32,8 +32,9 @@
 </template>
 
 <script>
+//import todos from '@/store/modules/todos';
 import AddTodo from './AddTodo.vue'
-import todoService from '@/service/todoService';
+import todoService from '@/services/todoService';
 
 export default {
   name: 'ToDoList',
@@ -47,44 +48,39 @@ export default {
     async fetchTodos() {
       try {
         const response = await todoService.getTodos()
-        this.todos = response.data
-      } catch(error) {
-        console.error('Error fetchTodos todo : ', error);
+        console.log(response)
+        this.todos = response.data 
+      } catch (error) {
+          console.error('Error fetchTodos todo : ', error)
       }
     },
-
     async toggleTodoStatus(todo) {
       try {
         const updateTodo = {...todo, completed: !todo.completed}
-        //const response = await todoService.updateTodo(todo.id, updateTodo)
         await todoService.updateTodo(todo.id, updateTodo)
-        //this.fetchTodos();
-        this.todos = this.todos.map( t => t.id === todo.id ?updateTodo : t);
+        this.todos = this.todos.map( t => t.id == todo.id ?updateTodo : t)
       } catch(error) {
-        console.error('Error toggleTodoStatus todo : ', error);
+        console.error('Error toggleTodoStatus todo : ', error)
       }
     },
-
     async addTodo(todoTitle) {
       try {
-        const newTodo = {title: todoTitle, completed: false};
-        const response = await todoService.createTodo(newTodo);
-        this.todos.push(response.data)
+          const newTodo = {title: todoTitle, completed: false}
+          const response = await todoService.createTodo(newTodo)
+          this.todos.push(response.data)
       } catch(error) {
-        console.error('Error addTodo todo : ', error);
+        console.error('Error addTodo todo : ', error)
       }
     },
-
     async removeTodo(id) {
       try {
-        await todoService.deleteTodo(id)
-        this.todos = this.todos.filter( todo => todo.id !== id);
+          await todoService.deleteTodo(id)
+          this.todos = this.todos.filter( todo => todo.id !== id)
       } catch(error) {
-        console.error('Error addTodo todo : ', error);
+        console.error('Error removeTodo todo : ', error)
       }
     }
   },
-
   created() {
     this.fetchTodos();
   }
