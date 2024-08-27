@@ -1,13 +1,23 @@
 <template>
   <v-app>
     <v-container>
-      <router-view />  <!-- 라우터가 렌더링할 컴포넌트가 여기에 표시됩니다. -->
+      <v-row>
+        <v-col>
+          <router-view/>
+        </v-col>
+      </v-row>
     </v-container>
   </v-app>
 </template>
 
 <script>
+import { RouterView } from 'vue-router';
+
 export default {
   name: 'App',
+
+  components: {
+    RouterView,
+},
 }
 </script>

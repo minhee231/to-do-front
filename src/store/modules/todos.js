@@ -1,5 +1,3 @@
-// store/modules/todos.js
-
 const state = {
     todos: []
   };

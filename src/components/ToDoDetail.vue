@@ -1,32 +1,22 @@
 <template>
     <v-container>
-      <h2>To-Do Detail</h2>
-      <v-card>
-        <v-card-text>
-          <p>ID: {{ id }}</p>
-          <p v-if="todo">Text: {{ todo.text }}</p>
-          <p v-else>Todo not found</p>
-        </v-card-text>
-      </v-card>
-      <v-btn @click="$router.push('/')">Back</v-btn>
+        <h2>To-Do Detail</h2>
+        <v-card>
+            <v-card-text>
+                <p>ID : {{ id }}</p>
+            </v-card-text>
+            <v-btn @click="$router.push('/')">Back</v-btn>
+        </v-card>
     </v-container>
-  </template>
-  
-  <script>
-  import { mapGetters } from 'vuex'
-  
-  export default {
-    props: {
-      id: {
-        type: String,
-        required: true
-      }
-    },
-    computed: {
-      ...mapGetters(['todos']),
-      todo() {
-        return this.todos[this.id]
-      }
+</template>
+
+<script>
+export default {
+    props:{
+        id:{
+            type:String,
+            required:true
+        }
     }
-  }
-  </script>
+}
+</script>
